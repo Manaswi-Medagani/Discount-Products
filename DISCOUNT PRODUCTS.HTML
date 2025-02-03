@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Discount Calculation Program using switch case in JavaScript
+
+// Function to display available categories
+function displayCategories() {
+    console.log("Available Categories:");
+    console.log("1. Electronics");
+    console.log("2. Clothing");
+    console.log("3. Grocery");
+}
+
+// Function to display products based on the selected category
+function displayProducts(categoryChoice) {
+    if (categoryChoice === 1) {
+        console.log("Available Electronics:");
+        console.log("1. Mobile - 5% discount");
+        console.log("2. Laptop - 10% discount");
+    } else if (categoryChoice === 2) {
+        console.log("Available Clothing:");
+        console.log("1. Men - 15% discount");
+        console.log("2. Women - 20% discount");
+    } else if (categoryChoice === 3) {
+        console.log("Available Grocery:");
+        console.log("1. Fruits - 5% discount");
+        console.log("2. Vegetables - 10% discount");
+    } else {
+        console.log("Invalid category selected.");
+    }
+}
+
+// Function to calculate discount using switch cases
+function calculateDiscount(categoryChoice, productChoice, price) {
+    let discountRate = 0;
+    let category = "";
+    let product = "";
+
+    switch (categoryChoice) {
+        case 1: // Electronics
+            category = "Electronics";
+            switch (productChoice) {
+                case 1:
+                    product = "Mobile";
+                    discountRate = 5;
+                    break;
+                case 2:
+                    product = "Laptop";
+                    discountRate = 10;
+                    break;
+                default:
+                    console.log("Invalid product selected in Electronics.");
+                    return null;
+            }
+            break;
+
+        case 2: // Clothing
+            category = "Clothing";
+            switch (productChoice) {
+                case 1:
+                    product = "Men";
+                    discountRate = 15;
+                    break;
+                case 2:
+                    product = "Women";
+                    discountRate = 20;
+                    break;
+                default:
+                    console.log("Invalid product selected in Clothing.");
+                    return null;
+            }
+            break;
+
+        case 3: // Grocery
+            category = "Grocery";
+            switch (productChoice) {
+                case 1:
+                    product = "Fruits";
+                    discountRate = 5;
+                    break;
+                case 2:
+                    product = "Vegetables";
+                    discountRate = 10;
+                    break;
+                default:
+                    console.log("Invalid product selected in Grocery.");
+                    return null;
+            }
+            break;
+
+        default:
+            console.log("Invalid category choice.");
+            return null;
+    }
+
+    let discountAmount = (price * discountRate) / 100;
+    let finalPrice = price - discountAmount;
+
+    return { category, product, discountRate, discountAmount, finalPrice };
+}
+
+// Main function to start the discount calculation
+function getDiscountedPrice() {
+    displayCategories();
+    let categoryChoice = parseInt(prompt("Enter the number corresponding to the category (1, 2, or 3):"));
+    
+    displayProducts(categoryChoice);
+    let productChoice = parseInt(prompt("Enter the number corresponding to the product:"));
+    
+    let price = parseFloat(prompt("Enter the price of the product:"));
+    
+    const result = calculateDiscount(categoryChoice, productChoice, price);
+    
+    if (result) {
+        const { category, product, discountRate, discountAmount, finalPrice } = result;
+        console.log("\nDiscount Summary:");
+        console.log(`Category: ${category}`);
+        console.log(`Product: ${product}`);
+        console.log(`Original Price: ${price}rs`);
+        console.log(`Discount Rate: ${discountRate}%`);
+        console.log(`Discount Amount: ${discountAmount}rs`);
+        console.log(`Final Price after Discount: ${finalPrice}rs`);
+    }
+}
+
+// Run the discount calculation function
+getDiscountedPrice();
+
+    </script>
+</body>
+</html>
